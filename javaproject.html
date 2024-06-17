@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/295b063b70.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Netflix - Watch TV Shows Online, Watch Movies Online</title>
+    <style>
+      :root {
+        --primary-color: #e50914;
+        --dark-color: #141414;
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Arial", "sans-serif";
+        -webkit-font-smoothing: antialiased;
+        background: #000;
+        color: #999;
+      }
+      ul {
+        list-style: none;
+      }
+      h1,
+      h2,
+      h3,
+      h4 {
+        color: #fff;
+      }
+      a {
+        color: #fff;
+        text-decoration: none;
+      }
+      p {
+        margin: 0.5rem 0;
+      }
+      img {
+        width: 100px;
+      }
+      .showcase {
+        width: 100%;
+        height: 93vh;
+        position: relative;
+        background: url(https://cdn.gulte.com/wp-content/uploads/2022/01/New-Project-2022-01-31T074738.946.jpg)
+          no-repeat center center/cover;
+      }
+      .showcase::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        background: rgba(0, 0, 0, 0.6);
+        box-shadow: inset 120px 100px 250px #000000,
+          inset -120px -100px 250px #000000;
+      }
+      .showcase-top {
+        position: relative;
+        /* z-index: 2; */
+        height: 90px;
+        /* mix-blend-mode: darken; */
+      }
+      .showcase-top img {
+        width: 170px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        mix-blend-mode: color-burn;
+        transform: translate(-50%, -50%);
+      }
+      .showcase-top a {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(-59%, -50%);
+      }
+
+      .showcase-content {
+        position: relative;
+        z-index: 2;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-top: 9rem;
+      }
+      .showcase-content h1 {
+        font-weight: 700;
+        font-size: 5.2rem;
+        line-height: 1.1;
+        margin: 0 0 2rem;
+      }
+      .showcase-content p {
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 400;
+        font-size: 1.9rem;
+        line-height: 1.25;
+        margin: 0 0 2rem;
+      }
+
+      .text-xl {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      .text-lg {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+      .text-md {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .text-dark {
+        color: #999;
+      }
+      /* buttons */
+      .btn {
+        display: inline-block;
+        background: var(--primary-color);
+        color: #fff;
+        padding: 0.4rem 1.3rem;
+        font-size: 1rem;
+        text-align: center;
+        border: none;
+        cursor: pointer;
+        margin-right: 0.5rem;
+        outline: none;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0) 0.45;
+        border-radius: 2px;
+      }
+      .btn:hover {
+        opacity: 0.9;
+      }
+      .btn-rounded {
+        border-radius: 5px;
+      }
+      .btn-xl {
+        font-size: 2rem;
+        padding: 1.5rem 2.1rem;
+        text-transform: uppercase;
+      }
+      .btn-lg {
+        font-size: 1rem;
+        padding: 0.8rem 1.3rem;
+        text-transform: uppercase;
+      }
+      /* section */
+      /* tabs */
+      .tabs {
+        background: var(--dark-color);
+        padding-top: 1rem;
+        border-bottom: 3px solid #3d3d3d;
+      }
+
+      /* hide content initially */
+      #tab-1-content,
+      #tab-2-content,
+      #tab-3-content {
+        display: none;
+      }
+      .show {
+        display: block !important;
+      }
+      .tabs .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+      .tabs p {
+        font-size: 1.2rem;
+        padding-top: 0.5rem 0;
+      }
+      .tabs .container > div {
+        padding: 1.5rem;
+      }
+      .tabs .container > div:hover {
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .tab-content {
+        padding: 3rem 0;
+        background: #000;
+        color: #fff;
+      }
+      .tab-border {
+        border-bottom: var(--primary-color) 4px solid;
+      }
+
+      #tab-1-content .tab-1-content-inner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 2rem;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* .container */
+      .container {
+        max-width: 70%;
+        margin: auto;
+        overflow: hidden;
+        padding: 0 2rem;
+      }
+
+      #tab-2-content .tab-2-content-top {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-gap: 1rem;
+        justify-content: center;
+        align-items: center;
+      }
+      #tab-2-content .tab-2-content-bottom {
+        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+      }
+
+      .table {
+        width: 100%;
+        margin-top: 2rem;
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+      .table thead th {
+        text-transform: uppercase;
+        padding: 0.8rem;
+      }
+      .table tbody tr td {
+        color: #fff;
+        padding: 0.8rem 1.2rem;
+        text-align: center;
+      }
+      .table tbody tr td:first-child {
+        text-align: left;
+      }
+      .table tbody tr:nth-child(odd) {
+        background: #222;
+      }
+      /* footer */
+      .footer {
+        max-width: 75%;
+        margin: 1rem auto;
+        overflow: auto;
+      }
+      .footer,
+      .footer a {
+        color: #999;
+        font-size: 0.9rem;
+      }
+      .footer p {
+        margin-bottom: 1.5rem;
+      }
+      .footer .footer-cols {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-gap: 2rem;
+      }
+      .footer li {
+        line-height: 1.9;
+      }
+      @media (max-width: 960px) {
+        .showcase {
+          height: 70vh;
+        }
+        .hide-sm {
+          display: none;
+        }
+        .showcase-top img {
+          top: 30%;
+          left: 5%;
+          transform: translate(0);
+        }
+        .showcase-content h1 {
+          font-size: 3.7rem;
+          line-height: 1;
+        }
+        .showcase-content p {
+          font-size: 1.5rem;
+        }
+        .btn-xl {
+          font-size: 1.5rem;
+          padding: 1.4rem 2rem;
+        }
+        .text-xl {
+          font-size: 1.5rem;
+        }
+        .text-lg {
+          font-size: 1.3rem;
+        }
+        .text-md {
+          font-size: 1rem;
+        }
+        .footer .footer-cols {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 700px) {
+        .showcase::after {
+          box-shadow: inset 80px 80px 250px #000000,
+            inset -80px -80px 250px #000000;
+        }
+        #tab-1-content .tab-1-content-inner {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+        #tab-2-content .tab-2-content-top {
+          display: block;
+          text-align: center;
+        }
+        #tab-2-content .tab-2-content-bottom {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="showcase">
+      <div class="showcase-top">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRawRe0teFSEAWgdSzNp7s-E_XRl_p61unPKRTJi4keEg&s"
+          alt=""
+        />
+        <a href="" class="btn btn-rounded">Sign In</a>
+      </div>
+      <div class="showcase-content">
+        <h1>See what's next</h1>
+        <p>Watch anywhere. Cancel anytime</p>
+        <a href="#" class="btn btn-xl">
+          Watch Free For 30 Days <i class="fas fa-chevron-right btn-icon"></i>
+        </a>
+      </div>
+    </header>
+    <section class="tabs">
+      <div class="container">
+        <div id="tab-1" class="tab-item tab-border">
+          <i class="fas fa-door-open fa-3x"></i>
+          <p class="hide-sm">Cancel anytime</p>
+        </div>
+        <div id="tab-2" class="tab-item">
+          <i class="fas fa-tablet-alt fa-3x"></i>
+          <p class="hide-sm">Watch anytime</p>
+        </div>
+        <div id="tab-3" class="tab-item">
+          <i class="fas fa-tags fa-3x"></i>
+          <p class="hide-sm">Pick your price</p>
+        </div>
+      </div>
+    </section>
+    <section class="tab-content">
+      <div class="container">
+        <!-- top content -->
+        <div id="tab-1-content" class="tab-content-item show">
+          <div class="tab-1-content-inner">
+            <div>
+              <p class="text-lg">
+                If you decide Netflix isn't for you - no problem. No commitment.
+                Cancel online anytime.
+              </p>
+              <a href="#" class="btn btn-lg">Watch Free For 30 Days</a>
+            </div>
+            <img
+              src="data:image/jpeg;base64,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"
+              alt=""
+            />
+          </div>
+        </div>
+        <div id="tab-2-content" class="tab-content-item">
+          <div class="tab-2-content-top">
+            <p class="text-lg">
+              Watch TV shows and movies anytime, anywhere - personalized for
+              you.
+            </p>
+            <a href="#" class="btn btn-lg">Watch Free For 30 Days</a>
+          </div>
+          <div class="tab-2-content-bottom">
+            <div>
+              <img
+                src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRumv0Aw41wT1dEwz7pSCcyB2NW7wf4gBXLeyPUEsZhTGiA507q"
+                alt=""
+              />
+              <p class="text-md">Watch on your TV</p>
+              <p class="text-dark">
+                Smart TVs, PlayStation, Xbox, Chromecast, Apple TV, Blu-ray
+                players and more.
+              </p>
+            </div>
+            <div>
+              <img
+                src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRumv0Aw41wT1dEwz7pSCcyB2NW7wf4gBXLeyPUEsZhTGiA507q"
+                alt=""
+              />
+              <p class="text-md">Watch instantly or download for later</p>
+              <p class="text-dark">
+                Available on phone and tablet. wherever you go.
+              </p>
+            </div>
+            <div>
+              <img
+                src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRumv0Aw41wT1dEwz7pSCcyB2NW7wf4gBXLeyPUEsZhTGiA507q"
+                alt=""
+              />
+              <p class="text-md">Use any computer create new netflix</p>
+              <p class="text-dark">Watch right on Netflix.com</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- tab 3 content -->
+        <div id="tab-3-content" class="tab-content-item">
+          <div class="text-center">
+            <p class="text-lg">
+              Choose one plan and watch everything on Netflix
+            </p>
+            <a href="#" class="btn btn-lg">Watch Free For 30 Days</a>
+          </div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Basic</th>
+                <th>Standard</th>
+                <th>Premium</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Monthly price after free month ends on 6/19/19</td>
+                <td>$8.99</td>
+                <td>$12.99</td>
+                <td>$15.99</td>
+              </tr>
+              <tr>
+                <td>HD Available</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+              </tr>
+              <tr>
+                <td>Ultra Hd Available</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+              </tr>
+              <tr>
+                <td>Screens you can watch on at the same time</td>
+                <td>1</td>
+                <td>2</td>
+                <td>4</td>
+              </tr>
+              <tr>
+                <td>Watch on your laptop, TV, phone and tablet</td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+              </tr>
+              <tr>
+                <td>Unlimited moveis and TV shows</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+              </tr>
+              <tr>
+                <td>Cancel anytime</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+              </tr>
+              <tr>
+                <td>First month free</td>
+                <td><i class="fas fa-times"></i></td>
+                <td><i class="fas fa-check"></i></td>
+                <td><i class="fas fa-check"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <p>Ouestions? call 1-866-579-7172</p>
+      <div class="footer-cols">
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Investor Relations</a></li>
+          <li><a href="#">Ways to Watch</a></li>
+          <li><a href="#">Corporate Information</a></li>
+          <li><a href="#">Netflix Originals</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Jobs</a></li>
+          <li><a href="#">Terms of Use</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Account</a></li>
+          <li><a href="#">Redeem Gift Cards</a></li>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Speed Test</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">Media Center</a></li>
+          <li><a href="#">Buy Gift Cards</a></li>
+          <li><a href="#">Cookie Preferences</a></li>
+          <li><a href="#">Legal Notices</a></li>
+        </ul>
+      </div>
+    </footer>
+    <script>
+      const tabItems = document.querySelectorAll(".tab-item");
+      const tabContentItems = document.querySelectorAll(".tab-content-item");
+
+      function selectItem(e) {
+        removeBorder();
+        removeshow();
+        this.classList.add("tab-border");
+
+        const tabContentItems = document.querySelector(`#${this.id}-content`);
+        tabContentItems.classList.add("show");
+      }
+      function removeBorder() {
+        tabItems.forEach((item) => item.classList.remove("tab-border"));
+      }
+      function removeshow() {
+        tabItems.forEach((item) => item.classList.remove("show"));
+      }
+
+      tabItems.forEach((item) => item.addEventListener("click", selectItem));
+    </script>
+  </body>
+</html>

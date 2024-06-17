@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: sans-serif;
+    }
+    body {
+      /* display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: #000; */
+    }
+    nav a {
+      position: relative;
+      font-size: 1.1em;
+      font-weight: 500;
+      color: #333;
+      text-decoration: none;
+      padding: 6px 20px;
+      transition: 0.5s;
+      /* float: right; */
+      /* -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+      box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75); */
+    }
+    nav a:hover {
+      color: #0ef;
+    }
+    nav a span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      border-bottom: 2px solid #0ef;
+      border-radius: 15px;
+      transform: scale(0) translate v(50px);
+      opacity: 0;
+      transition: 0.5s;
+    }
+    nav a:hover span {
+      transform: scale(1) translate v(0);
+      opacity: 1;
+    }
+  </style>
+  <body>
+    <nav>
+      <a href="#">PRODUCT<span></span></a>
+      <a href="#">PRICING<span></span></a>
+      <a href="#">TESTIMONIALS<span></span></a>
+      <a href="#">FEATURES<span></span></a>
+      <a href="#">RESOURCE<span></span></a>
+      <a href="#">ABOUT US<span></span></a>
+      <a href="#">LOGIN<span></span></a>
+      <button>FREE TRAIAL</button>
+      <button>BOOK A DEMO</button>
+    </nav>
+    <div class="main"></div>
+  </body>
+</html>

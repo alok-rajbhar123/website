@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: "lato", sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background-color: #111;
+      color: white;
+      padding: 20px 50px;
+    }
+    .navTop {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .search {
+      display: flex;
+      align-items: center;
+      background-color: gray;
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+    .searchInput {
+      border: none;
+      background-color: transparent;
+    }
+    .searchInput::placeholder {
+      color: lightgray;
+    }
+    .limitedOffer {
+      font-size: 20px;
+      border-bottom: 2px solid green;
+      cursor: pointer;
+    }
+    .navBottom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .menuItem {
+      margin-right: 50px;
+      cursor: pointer;
+      color: lightgray;
+      font-weight: 400;
+    }
+    .slider {
+      background-image: url(https://img.freepik.com/free-photo/background-made-from-bricks_23-2148742475.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699574400&semt=ais);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 91%);
+      overflow: hidden;
+    }
+    .sliderWrapper {
+      display: flex;
+      width: 500vw;
+      transition: all 1.5s ease-in-out;
+    }
+    .sliderItem {
+      width: 100vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .slideBg {
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+
+      position: absolute;
+      /* background-color: yellow; */
+    }
+    .sliderimg {
+      z-index: 1;
+    }
+    .sliderTitle {
+      position: absolute;
+      top: 10%;
+      right: 10%;
+      font-size: 30px;
+      font-weight: 900;
+      text-align: center;
+      color: white;
+      z-index: 1;
+    }
+    .sliderPrice {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      font-size: 30px;
+      font-weight: 300;
+      text-align: center;
+      color: white;
+      border: 1px solid gray;
+      z-index: 1;
+    }
+    .buyButton {
+      position: absolute;
+      top: 50%;
+      right: 10%;
+      font-size: 30px;
+      font-weight: 900;
+
+      color: white;
+      border: 1px solid gray;
+      background-color: black;
+      z-index: 1;
+      cursor: pointer;
+    }
+    .buyButton:hover {
+      background-color: white;
+      color: black;
+    }
+    .sliderItem:nth-child(1) .slideBg {
+      background-color: rebeccapurple;
+    }
+    .sliderItem:nth-child(2) .slideBg {
+      background-color: rgba(51, 153, 51, 0.664);
+    }
+    .sliderItem:nth-child(3) .slideBg {
+      background-color: rgb(15, 14, 71);
+    }
+    .sliderItem:nth-child(4) .slideBg {
+      background-color: rgb(104, 26, 93);
+    }
+    .sliderItem:nth-child(5) .slideBg {
+      background-color: rgb(153, 151, 51);
+    }
+    .sliderItem:nth-child(1) .sliderPrice {
+      background-color: rebeccapurple;
+    }
+    .sliderItem:nth-child(2) .sliderPrice {
+      background-color: rgba(51, 153, 51, 0.664);
+    }
+    .sliderItem:nth-child(3) .sliderPrice {
+      background-color: rgb(15, 14, 71);
+    }
+    .sliderItem:nth-child(4) .sliderPrice {
+      background-color: rgb(104, 26, 93);
+    }
+    .sliderItem:nth-child(5) .sliderPrice {
+      background-color: rgb(153, 151, 51);
+    }
+    .features {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 50px;
+    }
+    .feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: blue;
+    }
+    .featureIcon {
+      width: 50px;
+      height: 50px;
+      background-color: blue;
+    }
+    .featureTitle {
+      font-size: 20px;
+      font-weight: 600;
+      margin: 10px;
+    }
+    .featureDesc {
+      color: gray;
+      width: 50%;
+      height: 100px;
+    }
+    .product {
+      height: 100vh;
+      background-color: whitesmoke;
+      position: relative;
+      clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%);
+    }
+    .payment {
+      width: 500px;
+      height: 500px;
+      background-color: white;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      padding: 10px 50px;
+      display: none;
+      flex-direction: column;
+      -webkit-box-shadow: 17px -4px 18px -6px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 17px -4px 18px -6px rgba(0, 0, 0, 0.75);
+      box-shadow: 17px -4px 18px -6px rgba(0, 0, 0, 0.75);
+    }
+    .payTitle {
+      font-size: 20px;
+      color: lightgray;
+    }
+    label {
+      font-size: 14px;
+      font-weight: 300;
+    }
+    .payInput {
+      padding: 10px;
+      margin: 10px 0px;
+      border: none;
+      border-bottom: 1px solid gray;
+    }
+    .payInput::placeholder {
+      color: rgb(163, 163, 163);
+    }
+    .cardIcons {
+      display: flex;
+    }
+    .cardIcon {
+      margin-right: 10px;
+    }
+    .cardInfo {
+      display: flex;
+      justify-content: space-between;
+    }
+    .sm {
+      width: 30%;
+    }
+    .payButton {
+      /* position: absolute; */
+      height: 40px;
+      bottom: -40;
+      width: 100%;
+      left: 0;
+      -webkit-box-shadow: 17px -4px 18px -6px rgba(0, 0, 0, 0.75);
+      -moz-box-shadow: 17px -4px 18px -6px rgba(0, 0, 0, 0.75);
+      box-shadow: 17px -4px 18px -6px rgba(0, 0, 0, 0.75);
+
+      background-color: #369e62;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    .close {
+      width: 20px;
+      height: 20px;
+      position: absolute;
+      background-color: gray;
+      color: white;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .productImg {
+      width: 50%;
+    }
+    .productDetails {
+      position: absolute;
+      top: 10%;
+      right: 0;
+      width: 40%;
+      padding: 50px;
+    }
+    .productTitle {
+      font-size: 75px;
+      font-weight: 900;
+    }
+    .productDesc {
+      font-style: 24px;
+      color: gray;
+    }
+    .colors,
+    .sizes {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    .color {
+      width: 32px;
+      height: 32px;
+      border-radius: 5px;
+      background-color: black;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .color:last-child {
+      background-color: darkblue;
+    }
+    .size {
+      padding: 5px 20px;
+      border: 1px solid black;
+      margin-right: 10px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .productButton {
+      float: right;
+      padding: 10px 20px;
+      background-color: black;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .productButton:hover {
+      background-color: white;
+      color: black;
+    }
+    .gallery {
+      padding: 50px;
+      display: flex;
+    }
+    .galleryItem {
+      flex: 1;
+      padding: 50px;
+    }
+    .galleryImg {
+      width: 100%;
+    }
+    .newSeason {
+      display: flex;
+    }
+    .nsItem {
+      flex: 1;
+      background-color: black;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .nsImg {
+      width: 100%;
+      height: 500px;
+    }
+    .nsTitle {
+      font-size: 40px;
+    }
+    .nsButton {
+      padding: 15px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    footer {
+      display: flex;
+    }
+    .footerLeft {
+      flex: 2;
+      display: flex;
+      justify-content: space-between;
+      padding: 50px;
+    }
+    .fMenuTitle {
+      font-size: 16px;
+    }
+    .fList {
+      padding: 0;
+      list-style: none;
+    }
+    .fListItem {
+      margin-bottom: 10px;
+      color: gray;
+      cursor: pointer;
+    }
+    .footerRight {
+      flex: 1;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .fInput {
+      padding: 5px;
+    }
+    .fButton {
+      padding: 5px;
+      background-color: black;
+      color: white;
+    }
+    .fIcons {
+      display: flex;
+    }
+    .fIcon {
+      width: 20px;
+      height: 20px;
+      margin-right: 10px;
+    }
+    .copyright {
+      font-weight: 300;
+      font-size: 14px;
+    }
+    @media screen and (max-width: 480px) {
+      nav {
+        /* background-color: #369e62; */
+        padding: 10px;
+      }
+      .search {
+        display: none;
+      }
+      .navBottom {
+        flex-wrap: wrap;
+      }
+      .menuItem {
+        margin: 20px;
+        font-weight: 700;
+        font-size: 20px;
+      }
+      .slider {
+        clip-path: none;
+      }
+      .sliderImg {
+        width: 90%;
+      }
+      .slideBg {
+        width: 100%;
+        height: 100%;
+      }
+      .sliderTitle {
+        display: none;
+      }
+      .sliderPrice {
+        top: unset;
+        bottom: -50;
+        left: 0;
+        background-color: lightgray;
+      }
+      .buyButton {
+        right: 0;
+        top: 0;
+      }
+      .features {
+        flex-direction: column;
+      }
+      .product {
+        clip-path: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .productImg {
+        width: 80%;
+      }
+      .productDetails {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        top: 0;
+      }
+      .productTitle {
+        font-size: 50px;
+        margin: 0;
+      }
+      .gallery {
+        display: none;
+      }
+      .newSeason {
+        flex-direction: column;
+      }
+      .nsItem:nth-child(2) {
+        padding: 50px;
+      }
+      footer {
+        flex-direction: column;
+        align-items: center;
+      }
+      .footerLeft {
+        padding: 20px;
+        width: 90%;
+      }
+      .footerRight {
+        padding: 20%;
+        width: 90%;
+        align-items: center;
+        background-color: whitesmoke;
+      }
+      .payment {
+        width: 90%;
+        padding: 20px;
+      }
+    }
+  </style>
+  <body>
+    <nav id="nav">
+      <div class="navTop">
+        <div class="navItem">
+          <img
+            src="https://t4.ftcdn.net/jpg/01/36/55/49/360_F_136554929_JG7RLQNfAKpAQlmRmdV7QhbEM1PDt6k2.jpg "
+            width="50px"
+            alt=""
+          />
+        </div>
+        <div class="navItem">
+          <div class="search">
+            <input type="text" placeholder="search..." class="searchInput" />
+            <img
+              src="https://www.freepnglogos.com/uploads/search-png/search-icon-clip-art-clkerm-vector-clip-art-online-22.png"
+              width="20"
+              height="20"
+              alt=""
+              class="searchicon"
+            />
+          </div>
+        </div>
+        <div class="navItem">
+          <span class="limitedOffer">Limited offer!</span>
+        </div>
+      </div>
+      <div class="navBottom">
+        <h1 class="menuItem">AIRFORCE</h1>
+        <h1 class="menuItem">JORDAN</h1>
+        <h1 class="menuItem">BLAZER</h1>
+        <h1 class="menuItem">CRATER</h1>
+        <h1 class="menuItem">HIPPIE</h1>
+      </div>
+    </nav>
+    <div class="slider">
+      <div class="sliderWrapper">
+        <div class="sliderItem">
+          <img src="image/image1.png" alt="" class="sliderimg" />
+          <div class="slideBg"></div>
+          <h1 class="sliderTitle">AIR FOUCCE <br />NEW <br />SEASON</h1>
+          <h2 class="sliderPrice">$119</h2>
+          <a href="#product">
+            <button class="buyButton">BUY NOW!</button>
+          </a>
+        </div>
+        <div class="sliderItem">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqOiDEPccGpoHyh2ui_8aVvBShnvl2PiX0cccPpaJzSQ&s"
+            alt=""
+            class="sliderimg"
+          />
+          <div class="slideBg"></div>
+          <h1 class="sliderTitle">AIR FOUCCE <br />NEW <br />SEASON</h1>
+          <h2 class="sliderPrice">$119</h2>
+          <a href="#product">
+            <button class="buyButton">BUY NOW!</button>
+          </a>
+        </div>
+        <div class="sliderItem">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh3o45sBcJEdF-sLDRDqOxK0suYUORrg7M8i7JRXP_SzYu3GDvxbWT7OkpihtBa_tpkTM&usqp=CAU"
+            alt=""
+            class="sliderimg"
+          />
+          <div class="slideBg"></div>
+          <h1 class="sliderTitle">AIR FOUCCE <br />NEW <br />SEASON</h1>
+          <h2 class="sliderPrice">$119</h2>
+          <a href="#product">
+            <button class="buyButton">BUY NOW!</button>
+          </a>
+        </div>
+        <div class="sliderItem">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRihcnwsVmRdpgnq--CrEOi4DgoExuO1ou9CGa-R8z2-WXPhrqOw0X-MYHLzx6JzQasfUU&usqp=CAU"
+            alt=""
+            class="sliderimg"
+          />
+          <div class="slideBg"></div>
+          <h1 class="sliderTitle">AIR FOUCCE <br />NEW <br />SEASON</h1>
+          <h2 class="sliderPrice">$119</h2>
+          <button class="buyButton">BUY NOW!</button>
+        </div>
+        <div class="sliderItem">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPWa9wihNIFMgBSTc98O2coIVBnVxheVFfcyuF3Yo3eDyBu8jQVU19ddcaqIPnINBPu5s&usqp=CAU"
+            alt=""
+            class="sliderimg"
+          />
+          <div class="slideBg"></div>
+          <h1 class="sliderTitle">AIR FOUCCE <br />NEW <br />SEASON</h1>
+          <h2 class="sliderPrice">$119</h2>
+          <a href="#product">
+            <button class="buyButton">BUY NOW!</button>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa8BHebRuQ4kZZjzpaOCuLdesHON9slVGzH6LAVJBGFg&s"
+          alt=""
+          class="featureIcon"
+        />
+        <span class="featureTitle">FREE SHIPPING</span>
+        <span class="featuredDesc"
+          >FREE worldwide <br />shipping on all <br />orders.</span
+        >
+      </div>
+      <div class="feature">
+        <img
+          src="https://png.pngtree.com/element_our/20190531/ourmid/pngtree-return-icon-image_1288877.jpg"
+          alt=""
+          class="featureIcon"
+        />
+        <span class="featureTitle">30 DAYS RETURN </span>
+        <span class="featuredDesc"
+          >No question return <br />and easy refund in 14 <br />days.</span
+        >
+      </div>
+      <div class="feature">
+        <img
+          src="https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQM-cVgBudgsBV448lCjMn7cwXIVmIeh1U1Ml5LP7XATt1tSDWlKdkdNHEcATHThYjrdnuxbpgl-RexU_V2FSFjHnz6TK_HF7ztu-go9fs&usqp=CAE"
+          alt=""
+          class="featureIcon"
+        />
+        <span class="featureTitle">GIFT CARDS</span>
+        <span class="featuredDesc"
+          >Buy gift cards and <br />use coupon codes <br />easily.</span
+        >
+      </div>
+      <div class="feature">
+        <img
+          src="https://e7.pngegg.com/pngimages/31/35/png-clipart-computer-icons-contact-text-rectangle-thumbnail.png"
+          alt=""
+          class="featureIcon"
+        />
+        <span class="featureTitle">CONTACT US!</span>
+        <span class="featuredDesc"
+          >Keep in touch via <br />email and support <br />system.</span
+        >
+      </div>
+    </div>
+    <div class="product" id="product">
+      <img src="image/image1.png" alt="" class="productImg" />
+      <div class="productDetails">
+        <h1 class="productTitle">AIR FORCE</h1>
+        <h2 class="productPrice">$199</h2>
+        <p class="productDesc">
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          Exercitationem consectetur fugiat culpa illo facilis dolore eaque eos,
+        </p>
+
+        <div class="colors">
+          <div class="color"></div>
+          <div class="color"></div>
+        </div>
+        <div class="sizes">
+          <div class="size">42</div>
+          <div class="size">43</div>
+          <div class="size">44</div>
+        </div>
+        <button class="productButton">BY NOW!</button>
+      </div>
+      <div class="payment">
+        <h1 class="payTitle">Personal Information</h1>
+        <label>Name and Surname</label>
+        <input type="text" placeholder="John Doe" class="payInput" />
+        <label>Phone Number</label>
+        <input type="text" placeholder="+ 234 5678" class="payInput" />
+        <label>Address</label>
+        <input type="text" placeholder="Elton St 21 22-145" class="payInput" />
+        <h1 class="payTitle">Card Informaton</h1>
+
+        <div class="cardIcons">
+          <img
+            src="https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/visa-512.png"
+            width="40"
+            alt=""
+            class="CardIcon"
+          />
+          <img
+            src="https://w7.pngwing.com/pngs/654/477/png-transparent-card-master-master-card-master-card-new-logo-method-new-logo-payment-logos-icon-thumbnail.png"
+            width="40"
+            alt=""
+            class="cardIcon"
+          />
+        </div>
+        <input type="password" class="payInput" placeholder="Card Number" />
+        <div class="cardInfo">
+          <input type="text" placeholder="mm" class="payInput sm" />
+          <input type="text" placeholder="yyyy" class="payInput sm" />
+          <input type="text" placeholder="cvv" class="payInput sm" />
+        </div>
+        <button class="payButton">Checkout!</button>
+        <span class="close">X</span>
+      </div>
+    </div>
+    <div class="gallery">
+      <div class="galleryItem">
+        <h1 class="galleryTitle">Be Yourself</h1>
+        <img
+          src="https://baccabucci.com/cdn/shop/products/MG_5242.jpg?v=1633514122&width=1024"
+          alt=""
+          class="galleryImg"
+        />
+      </div>
+      <div class="galleryItem">
+        <h1 class="galleryTitle">This is the first Day of Your New Life</h1>
+        <img
+          src="https://img.ltwebstatic.com/images3_pi/2021/07/08/1625728063a1275c18b8dd6087d7c06d7860c03b42_thumbnail_720x.jpg"
+          alt=""
+          class="galleryImg"
+        />
+      </div>
+      <div class="galleryItem">
+        <h1 class="galleryTitle">Just Do It!</h1>
+        <img
+          src="https://assets.ajio.com/medias/sys_master/root/20220503/oAHQ/62704dfcf997dd03e28ffb01/-473Wx593H-469116799-white-MODEL.jpg"
+          alt=""
+          class="galleryImg"
+        />
+      </div>
+    </div>
+    <div class="newSeason">
+      <div class="nsItem">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3yoBDnP4VsmaTmQyCMNmxvi9gzIr-s_HuShf-S7uzxmOA44e5aV_LBDVu6IOq_Fx_cLc&usqp=CAU"
+          alt=""
+          class="nsImg"
+        />
+      </div>
+      <div class="nsItem">
+        <h3 class="nsTitleSm">WINTER NEW ARRIVALS</h3>
+        <h1 class="nsTitle">New Season</h1>
+        <h1 class="nsTilte">New Collection</h1>
+        <a href="#nav">
+          <button class="nsButton">CHOOSE YOUR STYLE</button>
+        </a>
+      </div>
+      <div class="nsItem">
+        <img
+          src="https://images.unsplash.com/photo-1547669624-1b79fce80fdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8OXw0MjQzOTQ4fHxlbnwwfHx8fHw%3D&w=1000&q=80"
+          alt=""
+          class="nsImg"
+        />
+      </div>
+    </div>
+    <footer>
+      <div class="footerLeft">
+        <div class="footerMenu">
+          <h1 class="fMenuTitle">About Ua</h1>
+          <ul class="fList">
+            <li class="fListItem">Company</li>
+            <li class="fListItem">Contact</li>
+            <li class="fListItem">Careers</li>
+            <li class="fListItem">Affiliates</li>
+            <li class="fListItem">Stores</li>
+          </ul>
+        </div>
+        <div class="footerMenu">
+          <h1 class="fMenuTitle">Useful Links</h1>
+          <ul class="fList">
+            <li class="fListItem">Support</li>
+            <li class="fListItem">Refund</li>
+            <li class="fListItem">FAQ</li>
+            <li class="fListItem">Feedback</li>
+            <li class="fListItem">Stories</li>
+          </ul>
+        </div>
+        <div class="footerMenu">
+          <h1 class="fMenuTitle">Products</h1>
+          <ul class="fList">
+            <li class="fListItem">Air Force</li>
+            <li class="fListItem">Air Jordan</li>
+            <li class="fListItem">Blazer</li>
+            <li class="fListItem">Crater</li>
+            <li class="fListItem">Hippie</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footerRight">
+        <div class="footerRightMenu">
+          <h1 class="fMenuTitle">Subscribe to our newsletter</h1>
+          <div class="fMail">
+            <input type="text" placeholder="your@email.com" class="fInput" />
+            <button class="fButton">Join!</button>
+          </div>
+        </div>
+        <div class="footerRightMenu">
+          <h1 class="fMenuTitle">Follow Us</h1>
+          <div class="fIcons">
+            <img
+              src="https://png.pngtree.com/png-clipart/20180515/ourmid/pngtree-facebook-logo-facebook-icon-png-image_3566127.png"
+              alt=""
+              class="fIcon"
+            />
+            <img
+              src="https://png.pngtree.com/png-vector/20221018/ourmid/pngtree-twitter-social-media-round-icon-png-image_6315985.png"
+              alt=""
+              class="fIcon"
+            />
+            <img
+              src="https://img.freepik.com/premium-vector/purple-gradiend-social-media-logo_197792-1883.jpg"
+              alt=""
+              class="fIcon"
+            />
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1deNNY8NIZXrf-iwALgoMw34nmDaamj73RqMQzj1Vlg&s"
+              alt=""
+              class="fIcon"
+            />
+          </div>
+        </div>
+        <div class="footerRightMenu">
+          <span class="copyright">@Lama Dev. All rights reserved. 2022.</span>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const wrapper = document.querySelector(".sliderWrapper");
+      const menuItems = document.querySelectorAll(".menuItem");
+
+      const products = [
+        {
+          id: 1,
+          title: "Air Force",
+          price: 119,
+          colors: [
+            {
+              code: "black",
+              img: "./img/img.png",
+            },
+            {
+              code: "darkblue",
+              img: "./img/img.png",
+            },
+          ],
+        },
+        {
+          id: 2,
+          title: "Air Jordan",
+          price: 149,
+          colors: [
+            {
+              code: "lightgray",
+              img: "./img/img.png",
+            },
+            {
+              code: "green",
+              img: "./img/image2.png",
+            },
+          ],
+        },
+        {
+          id: 3,
+          title: "Blazer",
+          price: 109,
+          colors: [
+            {
+              code: "lightgray",
+              img: "./img/img.png",
+            },
+            {
+              code: "green",
+              img: "./img/img.png",
+            },
+          ],
+        },
+        {
+          id: 4,
+          title: "Crater",
+          price: 129,
+          colors: [
+            {
+              code: "black",
+              img: "./img/image1.png",
+            },
+            {
+              code: "lightgray",
+              img: "./img/image1.png",
+            },
+          ],
+        },
+        {
+          id: 5,
+          title: "Hippie",
+          price: 99,
+          colors: [
+            {
+              code: "gray",
+              img: "./img/jordan1.png",
+            },
+            {
+              code: "black",
+              img: "./img/jordan1.png",
+            },
+          ],
+        },
+      ];
+
+      let choosenProduct = products[0];
+
+      const currentProductImg = document.querySelector(".productImg");
+      const currentProductTitle = document.querySelector(".productTitle");
+      const currentProductPrice = document.querySelector(".productPrice");
+      const currentProductColors = document.querySelectorAll(".color");
+      const currentProductSizes = document.querySelectorAll(".size");
+      menuItems.forEach((item, index) => {
+        item.addEventListener("click", () => {
+          // change the current slide
+          wrapper.style.transform = `translateX(${-100 * index}vw)`;
+
+          // change the choosen product
+
+          choosenProduct = products[index];
+
+          // change texts of currentProduct
+          currentProductTitle.textContent = choosenProduct.title;
+          currentProductPrice.textContent = "$" + choosenProduct.price;
+          currentProductImg.src = choosenProduct[0].img;
+
+          currentProductColors.forEach((color, index) => {
+            color.style.backgroundColor = choosenProduct.colors[index].code;
+          });
+        });
+      });
+      currentProductColors.forEach((color, index) => {
+        color.addEventListener("click", () => {
+          currentProductImg.src = choosenProduct.colors[index].img;
+        });
+      });
+
+      currentProductSizes.forEach((size, index) => {
+        size.addEventListener("click", () => {
+          currentProductSizes.forEach((size, index) => {
+            size.style.backgroundColor = "white";
+            size.style.color = "black";
+          });
+          size.style.background = "black";
+          size.style.color = "white";
+        });
+      });
+
+      const productButton = document.querySelector(".productButton");
+      const payment = document.querySelector(".payment");
+      const close = document.querySelector(".close");
+      productButton.addEventListener("click", () => {
+        payment.style.display = "flex";
+      });
+      close.addEventListener("click", () => {
+        payment.style.display = "none";
+      });
+    </script>
+  </body>
+</html>
