@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/295b063b70.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+      integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav>
+      <img
+        src="data:image/jpeg;base64,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"
+        alt=""
+      />
+      <div class="navigation">
+        <ul>
+          <i id="menu-close" class="fa-solid fa-xmark"></i>
+          <li><a href="newproject.html">Home</a></li>
+          <li><a class="active" href="about.html">About</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <img
+          id="menu-btn"
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHsAAAB7CAMAAABjGQ9NAAAATlBMVEX///8eHh4SEhL6+vp2dnZnZ2eZmZkEBAQODg4AAAAICAjZ2dmpqanw8PBwcHAbGxt/f3+ysrJLS0tXV1fm5uaGhobExMSMjIxiYmK+vr6HaLUVAAAA+UlEQVRoge3aWxLCIAyF4V6oAoVq7dX9b1QdX4NvadT5vwX0DANlhiRVBQAAgN/Rp5Om1BeT8xLDWVOISy5kD/FS67rEQY5evXb0M9yvYvbVq0fXtb9K0W3XHJDddK2U7Q5Zt5OyqzEekB1Hcb/zTX/h/lb4yfop+EaTD1PxdsnJdZpcKl0t7xOn6VMwAAAAgO/RrpvTtN2Lz4PZNV7zQfb8+DAXsnf9est5l6PHoJz8EuT39//XW3bxuBmu23S/Lc+56f+tf6+tlD0AAACAH2HWDzXsAxv2vy37/obzDpZzHpbzLab1Fst5Jss5LtP5Ncu5PQAAAHyfBzanJboHZQHCAAAAAElFTkSuQmCC"
+          alt=""
+        />
+      </div>
+    </nav>
+    <section id="about-home">
+      <h2>About TechEduca /</h2>
+    </section>
+    <section id="about-container">
+      <div class="about-img">
+        <img
+          src="https://img.freepik.com/free-photo/male-female-business-people-working-tablet-office_1303-22826.jpg"
+          alt=""
+        />
+      </div>
+      <div class="about-text">
+        <h2>Welcome too TechEduca, Enhance your skills Online Courses</h2>
+        <p>
+          Your can start and finish one of these popular courses in under a day
+          - for free! chech out the list below.. Take the course for free
+        </p>
+        <div class="about-fe">
+          <img
+            src="https://e7.pngegg.com/pngimages/36/134/png-clipart-business-man-work-people-computer-thumbnail.png"
+            alt=""
+          />
+          <div class="fe-text">
+            <h5>4bb+ Courses</h5>
+            <p>
+              You can start and finish one of theese popular course i undre our
+              site
+            </p>
+          </div>
+        </div>
+        <div class="about-fe">
+          <img
+            src="https://www.espressoenglish.net/wp-content/uploads/2012/06/english-idiomatic-expressions-with-hand.jpg"
+            alt=""
+          />
+          <div class="fe-text">
+            <h5>Lifetime Access</h5>
+            <p>
+              You can start and finish one of theese popular course i undre our
+              site
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <h1>Awesome features</h1>
+      <p>Replenish man have thing gathering lights yielding shall you</p>
+      <div class="fea-base">
+        <div class="fea-box">
+          <i class="fa-solid fa-graduation-cap"></i>
+          <h3>Scholarship Facility</h3>
+          <p>One make creepeth, man bearing theira firmament shall you</p>
+        </div>
+        <div class="fea-box">
+          <i class="fa-solid fa-file-import"></i>
+          <h3>Dell Online Course</h3>
+          <p>One make creepeth, man bearing theira firmament shall you</p>
+        </div>
+        <div class="fea-box">
+          <i class="fas fa-award"></i>
+          <h3>Global certificate</h3>
+          <p>One make creepeth, man bearing theira firmament shall you</p>
+        </div>
+      </div>
+    </section>
+    <section id="trust">
+      <h1>Trusted By</h1>
+      <p>Replenish man have thing gathering lights yielding shall you</p>
+      <div class="trust-img">
+        <img
+          src="https://www.liberty.edu/wp-content/uploads/join-liberty-as-a-champion-for-christ-20190903_0386KT2.jpg"
+          alt=""
+        />
+        <img
+          src="https://www.liberty.edu/wp-content/uploads/join-liberty-as-a-champion-for-christ-20190903_0386KT2.jpg"
+          alt=""
+        />
+        <img
+          src="https://www.liberty.edu/wp-content/uploads/join-liberty-as-a-champion-for-christ-20190903_0386KT2.jpg"
+          alt=""
+        />
+        <img
+          src="https://www.liberty.edu/wp-content/uploads/join-liberty-as-a-champion-for-christ-20190903_0386KT2.jpg"
+          alt=""
+        />
+
+        <img
+          src="https://www.liberty.edu/wp-content/uploads/join-liberty-as-a-champion-for-christ-20190903_0386KT2.jpg"
+          alt=""
+        />
+
+        <img
+          src="https://www.liberty.edu/wp-content/uploads/join-liberty-as-a-champion-for-christ-20190903_0386KT2.jpg"
+          alt=""
+        />
+      </div>
+    </section>
+    <footer>
+      <div class="footer-col">
+        <h3>Top products</h3>
+        <li>Manage Reputation</li>
+        <li>Power Tools</li>
+        <li>Managed Website</li>
+        <li>Marketing Service</li>
+      </div>
+
+      <div class="footer-col">
+        <h3>Top products</h3>
+        <li>Manage Reputation</li>
+        <li>Power Tools</li>
+        <li>Managed Website</li>
+        <li>Marketing Service</li>
+      </div>
+
+      <div class="footer-col">
+        <h3>Top products</h3>
+        <li>Manage Reputation</li>
+        <li>Power Tools</li>
+        <li>Managed Website</li>
+        <li>Marketing Service</li>
+      </div>
+
+      <div class="footer-col">
+        <h3>Top products</h3>
+        <li>Manage Reputation</li>
+        <li>Power Tools</li>
+        <li>Managed Website</li>
+        <li>Marketing Service</li>
+      </div>
+
+      <div class="footer-col">
+        <h3>Newsletter</h3>
+        <p>You can trust us . we only send prom offers</p>
+        <div class="subcribe">
+          <input type="text" placeholder="Your Email Address" />
+          <a href="#" class="yellow">SUBSCRIBE</a>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>Copyright 02021 All rights | This template is made by Tech2etc</p>
+        <div class="pro-links">
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-linkedin-in"></i>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function validation() {
+        var umai = document.getElementById("main").value;
+        var uname = document.getElementById("main2").value;
+        var umain = document.getElementById("main3").value;
+
+        if (umai == "") {
+          document.getElementById("main1").innerHTML =
+            "*** plz Enter your name";
+          return false;
+        }
+        if (uname == "") {
+          document.getElementById("main5").innerHTML =
+            "*** plz Enter your Email";
+          return false;
+        }
+        if (umain == "") {
+          document.getElementById("main4").innerHTML =
+            "*** plz Enter your Phone Number";
+          return false;
+        } else {
+          return true;
+        }
+      }
+
+      $(document).ready(function () {
+        $("#menu-btn").click(function () {
+          $("nav .navigation ul").addClass("active");
+        });
+        $("#menu-close").click(function () {
+          $("nav .navigation ul").removeClass("active");
+        });
+      });
+    </script>
+  </body>
+</html>
